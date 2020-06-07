@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>	
+	<include file="$(find megatrond_description)/launch/gazebo.launch"/>
+	<include file="$(find megatrond_perception)/launch/merger.launch"/>
+	<!--<include file="$(find megatrond_perception)/launch/aruco.launch"/>-->
+	<include file="$(find megatrond_navigation)/launch/amcl.launch"/>
+</launch>

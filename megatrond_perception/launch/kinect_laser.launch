@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="run_openni_driver" default="false"/>
+
+  <include if="$(arg run_openni_driver)" file="$(find openni_launch)/launch/openni.launch"/>
+
+    <!-- Convert depth image to laser scan -->
+    <node name= "frnt_laserscan" pkg= "laserscan_kinect" type= "laserscan_kinect">
+          <remap from="image" to="/frnt_cam_lnk/depth/image_raw"/>
+          <remap from="scan" to="frnt_scan"/>
+	      <remap from="/frnt_cam_lnk/depth/camera_info" to="/frnt_cam_lnk_ir/depth/camera_info"/>
+          <remap from="camera_info" to="/frnt_cam_lnk_ir/depth/camera_info"/>
+      <param name="output_frame_id" value="frnt_cam_lnk"/>
+      <rosparam command="load" file="$(find megatrond_perception)/config/kinect_laser.yaml"/>
+    </node>
+
+    <!-- Convert depth image to laser scan -->
+    <node name= "rear_laserscan" pkg= "laserscan_kinect" type= "laserscan_kinect">
+          <remap from="image" to="/rear_cam_lnk/depth/image_raw"/>
+          <remap from="scan" to="rear_scan"/>
+	      <remap from="/rear_cam_lnk/depth/camera_info" to="/rear_cam_lnk_ir/depth/camera_info"/>
+          <remap from="camera_info" to="/rear_cam_lnk_ir/depth/camera_info"/>
+      <param name="output_frame_id" value="rear_cam_lnk"/>
+      <rosparam command="load" file="$(find megatrond_perception)/config/kinect_laser.yaml"/>
+    </node>
+
+    <!-- Convert depth image to laser scan -->
+    <node name= "left_laserscan" pkg= "laserscan_kinect" type= "laserscan_kinect">
+          <remap from="image" to="/left_cam_lnk/depth/image_raw"/>
+          <remap from="scan" to="left_scan"/>
+	      <remap from="/left_cam_lnk/depth/camera_info" to="/left_cam_lnk_ir/depth/camera_info"/>
+          <remap from="camera_info" to="/left_cam_lnk_ir/depth/camera_info"/>
+      <param name="output_frame_id" value="left_cam_lnk"/>
+      <rosparam command="load" file="$(find megatrond_perception)/config/kinect_laser.yaml"/>
+    </node>
+
+    <!-- Convert depth image to laser scan -->
+    <node name= "right_laserscan" pkg= "laserscan_kinect" type= "laserscan_kinect">
+          <remap from="image" to="/right_cam_lnk/depth/image_raw"/>
+          <remap from="scan" to="right_scan"/>
+	      <remap from="/right_cam_lnk/depth/camera_info" to="/right_cam_lnk_ir/depth/camera_info"/>
+          <remap from="camera_info" to="/right_cam_lnk_ir/depth/camera_info"/>
+      <param name="output_frame_id" value="right_cam_lnk"/>
+      <rosparam command="load" file="$(find megatrond_perception)/config/kinect_laser.yaml"/>
+    </node>
+
+</launch>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+
+  <param name ="/use_sim_time" value="true"/>
+
+
+  <!-- Map server -->
+  <arg name="map_file" default="$(find megatrond_navigation)/maps/mymap.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- Localization -->
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <remap from="scan" to="merged_scan"/>
+	<rosparam command="load" file="$(find megatrond_navigation)/config/amcl_params.yaml" />
+  </node>
+
+  <!-- Move base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find megatrond_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find megatrond_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find megatrond_navigation)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find megatrond_navigation)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find megatrond_navigation)/config/dwa_local_planner_params.yaml" command="load" />
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
+        <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <rosparam file="$(find megatrond_navigation)/config/move_base_params.yaml" command="load" />
+    
+    <remap from="cmd_vel" to="cmd_vel"/>
+    <remap from="odom" to="odom"/>
+    <remap from="scan" to="merged_scan"/>
+    <param name="move_base/DWAPlannerROS/yaw_goal_tolerance" value="0.05"/>
+    <param name="move_base/DWAPlannerROS/xy_goal_tolerance" value="0.1"/>
+
+  </node>
+
+</launch>
+

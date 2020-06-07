@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>	
+	<include file="$(find megatrond_perception)/launch/aruco_front.launch"/>
+    <!--<include file="$(find megatrond_perception)/launch/aruco_rear.launch"/>-->
+    <!--<include file="$(find megatrond_perception)/launch/aruco_left.launch"/>-->
+    <!--<include file="$(find megatrond_perception)/launch/aruco_right.launch"/>-->
+</launch>

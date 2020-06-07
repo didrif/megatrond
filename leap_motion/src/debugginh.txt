@@ -1,0 +1,4 @@
+https://github.com/ros-drivers/leap_motion/issues/53  - Fixing no leap module. (If addind path does not work. The SDKfolder can be added to home location) 
+
+
+Message data https://github.com/ros-drivers/leap_motion/issues/48

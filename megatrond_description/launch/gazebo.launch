@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+	
+	<param name ="/use_sim_time" value="true"/>
+	
+	<include
+    file="$(find megatrond_perception)/launch/kinect_laser.launch" />
+   
+
+    <!-- Robot Model -->
+    <param 
+    name="robot_description"
+    command="$(find xacro)/xacro --inorder '$(find megatrond_description)/urdf/megatrond.xacro'"/>
+    
+    <!-- Robot spawn pose -->
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
+
+    <include
+    file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+    <!-- Spawn the uia environment -->
+	<node 
+	name="spawn_environment"
+	pkg="gazebo_ros"
+	type="spawn_model"
+	respawn="false"
+	output="screen"
+	args="-file $(find megatrond_description)/world/uia_section_v2/model.sdf -sdf -x -25.0 -y 0.0 -z 0.0 -model uia"/>
+	
+    <!-- Spawn the robot model -->
+    <node
+    name="spawn_robot_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    output="screen"
+    args="-urdf -param robot_description -model megatrond -x $(arg x) -y $(arg y) -z $(arg z)"/>
+    
+    <!-- Load Controllers -->
+    <rosparam
+    command="load" file="$(find megatrond_description)/config/joints.yaml"/>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner"
+            respawn="false" output="screen"
+            args="
+            joint_state_controller
+            vel_ctrl_frw
+            vel_ctrl_flw
+            vel_ctrl_rrw
+            vel_ctrl_rlw
+            --timeout 60">
+    </node>
+    
+    <node name="megatrond_control" pkg="megatrond_control" type="gazebo_control.py" output="screen"> 
+    </node>
+    
+    <node name="state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+          respawn="false" output="screen">
+          <param name="publish frequency" type="double" value="10.0" />
+    </node>
+    <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher"/>
+
+
+
+</launch>

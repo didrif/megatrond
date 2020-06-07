@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+	
+	<param name ="/use_sim_time" value="true"/>
+
+    <!-- Aruco Model -->
+    <param 
+    name="aruco_description"
+    textfile="$(find megatrond_perception)/aruco/urdf/ar002.urdf"/>
+
+    <!-- ArUco spawn pose -->
+    <arg name="x_a" default="-2.5"/>
+    <arg name="y_a" default="-0.25"/>
+    <arg name="z_a" default="0.5"/>
+
+    <node
+    name="spawn_aruco_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    output="screen"
+    args="-urdf -param aruco_description -model ar002 -x $(arg x_a) -y $(arg y_a) -z $(arg z_a)"/>
+
+</launch>

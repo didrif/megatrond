@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<robot name="ar_002">
+
+  <link
+  name="aruco_lnk">
+  </link>
+
+    <link
+        name="aruco_frame">
+         <inertial>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0"/>
+            <mass
+                value="1" />
+            <inertia
+                ixx="0.02"
+                ixy="0.001"
+                ixz="0.001"
+                iyy="0.02"
+                iyz="0.001"
+                izz="0.02" />
+        </inertial>
+        <visual>
+            <origin
+                xyz="0.0 0 0"
+                rpy="0 3.14 4.71" />.
+            <geometry>
+                <mesh
+                filename="package://megatrond_perception/aruco/urdf/ArUco5.dae" />
+            </geometry>
+        </visual>  
+    </link>
+
+    <joint name="aruco_jnt" type="fixed">
+       <origin
+       xyz="0 0 0"
+       rpy="0 0 0" />
+       <parent link="aruco_lnk"/>
+       <child link="aruco_frame"/>
+    </joint>
+
+    <!-- Gazebo base controller plugin -->
+    <gazebo>
+        <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+        <commandTopic>vel_cmd</commandTopic>
+        <odometryTopic>aruco_odom</odometryTopic>
+        <odometryFrame>aruco_odom</odometryFrame>
+        <odometryRate>20.0</odometryRate>
+        <robotBaseFrame>aruco_lnk</robotBaseFrame>
+        <publishTF>false</publishTF>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="aruco_lnk">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <gazebo reference="base_link">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+</robot>
+    
+

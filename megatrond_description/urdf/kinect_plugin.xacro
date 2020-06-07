@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <gazebo reference="frnt_cam_lnk">
+  <sensor name="frnt_cam_lnk_camera" type="depth">
+    <update_rate>15</update_rate>
+    <camera>
+      <horizontal_fov>2.0943951</horizontal_fov>
+      <image>
+        <width>512</width>
+        <height>512</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.1</near>
+        <far>10</far>
+      </clip>
+    </camera>
+    <plugin name="frnt_cam_lnk_controller" filename="libgazebo_ros_openni_kinect.so">
+      <baseline>0.2</baseline>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>15</updateRate>
+      <cameraName>frnt_cam_lnk_ir</cameraName>
+      <imageTopicName>/frnt_cam_lnk/color/image_raw</imageTopicName>
+      <cameraInfoTopicName>/frnt_cam_lnk/color/camera_info</cameraInfoTopicName>
+      <depthImageTopicName>/frnt_cam_lnk/depth/image_raw</depthImageTopicName>
+      <depthImageInfoTopicName>/frnt_cam_lnk/depth/camera_info</depthImageInfoTopicName>
+      <pointCloudTopicName>/frnt_cam_lnk/depth/points</pointCloudTopicName>
+      <frameName>frnt_cam_opt</frameName>
+      <pointCloudCutoff>0.25</pointCloudCutoff>
+      <pointCloudCutoffMax>6</pointCloudCutoffMax>
+      <distortionK1>0.00000001</distortionK1>
+      <distortionK2>0.00000001</distortionK2>
+      <distortionK3>0.00000001</distortionK3>
+      <distortionT1>0.00000001</distortionT1>
+      <distortionT2>0.00000001</distortionT2>
+      <CxPrime>0</CxPrime>
+      <Cx>0</Cx>
+      <Cy>0</Cy>
+      <focalLength>0</focalLength>
+      <hackBaseline>0</hackBaseline>
+    </plugin>
+  </sensor>
+</gazebo>
+
+  <gazebo reference="rear_cam_lnk">
+  <sensor name="rear_cam_lnk_camera" type="depth">
+    <update_rate>15</update_rate>
+    <camera>
+      <horizontal_fov>2.0943951</horizontal_fov>
+      <image>
+        <width>512</width>
+        <height>512</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.1</near>
+        <far>10</far>
+      </clip>
+    </camera>
+    <plugin name="rear_cam_lnk_controller" filename="libgazebo_ros_openni_kinect.so">
+      <baseline>0.2</baseline>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>15</updateRate>
+      <cameraName>rear_cam_lnk_ir</cameraName>
+      <imageTopicName>/rear_cam_lnk/color/image_raw</imageTopicName>
+      <cameraInfoTopicName>/rear_cam_lnk/color/camera_info</cameraInfoTopicName>
+      <depthImageTopicName>/rear_cam_lnk/depth/image_raw</depthImageTopicName>
+      <depthImageInfoTopicName>/rear_cam_lnk/depth/camera_info</depthImageInfoTopicName>
+      <pointCloudTopicName>/rear_cam_lnk/depth/points</pointCloudTopicName>
+      <frameName>rear_cam_opt</frameName>
+      <pointCloudCutoff>0.25</pointCloudCutoff>
+      <pointCloudCutoffMax>6</pointCloudCutoffMax>
+      <distortionK1>0.00000001</distortionK1>
+      <distortionK2>0.00000001</distortionK2>
+      <distortionK3>0.00000001</distortionK3>
+      <distortionT1>0.00000001</distortionT1>
+      <distortionT2>0.00000001</distortionT2>
+      <CxPrime>0</CxPrime>
+      <Cx>0</Cx>
+      <Cy>0</Cy>
+      <focalLength>0</focalLength>
+      <hackBaseline>0</hackBaseline>
+    </plugin>
+  </sensor>
+</gazebo>
+
+  <gazebo reference="right_cam_lnk">
+  <sensor name="right_cam_lnk_camera" type="depth">
+    <update_rate>15</update_rate>
+    <camera>
+      <horizontal_fov>2.0943951</horizontal_fov>
+      <image>
+        <width>512</width>
+        <height>512</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.1</near>
+        <far>10</far>
+      </clip>
+    </camera>
+    <plugin name="right_cam_lnk_controller" filename="libgazebo_ros_openni_kinect.so">
+      <baseline>0.2</baseline>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>15</updateRate>
+      <cameraName>right_cam_lnk_ir</cameraName>
+      <imageTopicName>/right_cam_lnk/color/image_raw</imageTopicName>
+      <cameraInfoTopicName>/right_cam_lnk/color/camera_info</cameraInfoTopicName>
+      <depthImageTopicName>/right_cam_lnk/depth/image_raw</depthImageTopicName>
+      <depthImageInfoTopicName>/right_cam_lnk/depth/camera_info</depthImageInfoTopicName>
+      <pointCloudTopicName>/right_cam_lnk/depth/points</pointCloudTopicName>
+      <frameName>right_cam_opt</frameName>
+      <pointCloudCutoff>0.25</pointCloudCutoff>
+      <pointCloudCutoffMax>6</pointCloudCutoffMax>
+      <distortionK1>0.00000001</distortionK1>
+      <distortionK2>0.00000001</distortionK2>
+      <distortionK3>0.00000001</distortionK3>
+      <distortionT1>0.00000001</distortionT1>
+      <distortionT2>0.00000001</distortionT2>
+      <CxPrime>0</CxPrime>
+      <Cx>0</Cx>
+      <Cy>0</Cy>
+      <focalLength>0</focalLength>
+      <hackBaseline>0</hackBaseline>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<gazebo reference="left_cam_lnk">
+  <sensor name="left_cam_lnk_camera" type="depth">
+    <update_rate>15</update_rate>
+    <camera>
+      <horizontal_fov>2.0943951</horizontal_fov>
+      <image>
+        <width>512</width>
+        <height>512</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.1</near>
+        <far>10</far>
+      </clip>
+    </camera>
+    <plugin name="left_cam_lnk_controller" filename="libgazebo_ros_openni_kinect.so">
+      <baseline>0.2</baseline>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>15</updateRate>
+      <cameraName>left_cam_lnk_ir</cameraName>
+      <imageTopicName>/left_cam_lnk/color/image_raw</imageTopicName>
+      <cameraInfoTopicName>/left_cam_lnk/color/camera_info</cameraInfoTopicName>
+      <depthImageTopicName>/left_cam_lnk/depth/image_raw</depthImageTopicName>
+      <depthImageInfoTopicName>/left_cam_lnk/depth/camera_info</depthImageInfoTopicName>
+      <pointCloudTopicName>/left_cam_lnk/depth/points</pointCloudTopicName>
+      <frameName>left_cam_opt</frameName>
+      <pointCloudCutoff>0.25</pointCloudCutoff>
+      <pointCloudCutoffMax>6</pointCloudCutoffMax>
+      <distortionK1>0.00000001</distortionK1>
+      <distortionK2>0.00000001</distortionK2>
+      <distortionK3>0.00000001</distortionK3>
+      <distortionT1>0.00000001</distortionT1>
+      <distortionT2>0.00000001</distortionT2>
+      <CxPrime>0</CxPrime>
+      <Cx>0</Cx>
+      <Cy>0</Cy>
+      <focalLength>0</focalLength>
+      <hackBaseline>0</hackBaseline>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<gazebo reference="frnt_cam_lnk">
+  <gravity>true</gravity>
+  <sensor name="imu_sensor" type="imu">
+    <always_on>true</always_on>
+    <update_rate>100</update_rate>
+    <visualize>true</visualize>
+    <topic>/frnt_cam_lnk/imu</topic>
+    <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+      <topicName>imu</topicName>
+      <bodyName>frnt_cam_imu</bodyName>
+      <updateRateHZ>10.0</updateRateHZ>
+      <gaussianNoise>0.0</gaussianNoise>
+   	  <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>frnt_cam_lnk</frameName>
+    </plugin>
+    <pose>0 0 0 0 0 0</pose>
+  </sensor>
+</gazebo>
+
+</robot>
